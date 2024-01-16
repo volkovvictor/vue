@@ -5,3 +5,23 @@
     <div class="best__item-price">15.99$</div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    img: {
+      type: String,
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+  },
+};
+</script>
+
