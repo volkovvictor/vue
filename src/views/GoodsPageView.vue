@@ -7,7 +7,7 @@
             <nav-bar-component />
           </div>
         </div>
-        <h1 class="title-big">For your pleasure</h1>
+        <header-title-component title="For your pleasure" />
       </div>
     </div>
     <section class="shop">
@@ -49,31 +49,37 @@
           <div class="col-lg-10 offset-lg-1">
             <div class="shop__wrapper">
               <product-card-component
+                classItem="shop__item"
                 :img="goods[0].img"
                 :text="goods[0].text"
                 :price="goods[0].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="goods[1].img"
                 :text="goods[1].text"
                 :price="goods[1].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="goods[2].img"
                 :text="goods[2].text"
                 :price="goods[2].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="goods[3].img"
                 :text="goods[3].text"
                 :price="goods[3].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="goods[4].img"
                 :text="goods[4].text"
                 :price="goods[4].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="goods[5].img"
                 :text="goods[5].text"
                 :price="goods[5].price"
@@ -89,9 +95,10 @@
 <script>
 import NavBarComponent from "@/components/NavBarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
+import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
 
 export default {
-  components: { NavBarComponent, ProductCardComponent },
+  components: { NavBarComponent, ProductCardComponent, HeaderTitleComponent },
 
   data() {
     return {

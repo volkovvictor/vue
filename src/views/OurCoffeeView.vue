@@ -7,7 +7,7 @@
             <nav-bar-component />
           </div>
         </div>
-        <h1 class="title-big">Our Coffee</h1>
+        <header-title-component title="Our Coffee" />
       </div>
     </div>
     <section class="shop">
@@ -70,31 +70,37 @@
           <div class="col-lg-10 offset-lg-1">
             <div class="shop__wrapper">
               <product-card-component
+                classItem="shop__item"
                 :img="coffee[0].img"
                 :text="coffee[0].text"
                 :price="coffee[0].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="coffee[1].img"
                 :text="coffee[1].text"
                 :price="coffee[1].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="coffee[2].img"
                 :text="coffee[2].text"
                 :price="coffee[2].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="coffee[3].img"
                 :text="coffee[3].text"
                 :price="coffee[3].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="coffee[4].img"
                 :text="coffee[4].text"
                 :price="coffee[4].price"
               />
               <product-card-component
+                classItem="shop__item"
                 :img="coffee[5].img"
                 :text="coffee[5].text"
                 :price="coffee[5].price"
@@ -110,46 +116,47 @@
 <script>
 import NavBarComponent from "@/components/NavBarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
+import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
 
 export default {
-  components: { NavBarComponent, ProductCardComponent },
+  components: { NavBarComponent, ProductCardComponent, HeaderTitleComponent },
 
   data() {
     return {
       coffee: [
         {
           id: 0,
-          img: "coffee-3.jpg",
+          img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
           price: 10.73,
         },
         {
           id: 1,
-          img: "coffee-3.jpg",
+          img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
           price: 10.73,
         },
         {
           id: 2,
-          img: "coffee-3.jpg",
+          img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
           price: 10.73,
         },
         {
           id: 3,
-          img: "coffee-3.jpg",
+          img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
           price: 10.73,
         },
         {
           id: 4,
-          img: "coffee-3.jpg",
+          img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
           price: 10.73,
         },
         {
           id: 5,
-          img: "coffee-3.jpg",
+          img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
           price: 10.73,
         },

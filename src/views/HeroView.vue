@@ -9,7 +9,7 @@
         </div>
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
-            <h1 class="title-big">Everything You Love About Coffee</h1>
+            <header-title-component title="Everything You Love About Coffee" />
             <img
               class="beanslogo"
               src="@/assets/logo/Beans_logo.svg"
@@ -60,16 +60,19 @@
           <div class="col-lg-10 offset-lg-1">
             <div class="best__wrapper">
               <product-card-component
+                classItem="best__item"
                 :img="bestsellers[0].img"
                 :text="bestsellers[0].text"
                 :price="bestsellers[0].price"
               />
               <product-card-component
+                classItem="best__item"
                 :img="bestsellers[1].img"
                 :text="bestsellers[1].text"
                 :price="bestsellers[1].price"
               />
               <product-card-component
+                classItem="best__item"
                 :img="bestsellers[2].img"
                 :text="bestsellers[2].text"
                 :price="bestsellers[2].price"
@@ -87,9 +90,10 @@
 <script>
 import NavBarComponent from "@/components/NavBarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
+import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
 
 export default {
-  components: { NavBarComponent, ProductCardComponent },
+  components: { NavBarComponent, ProductCardComponent, HeaderTitleComponent },
 
   data() {
     return {
