@@ -49,41 +49,16 @@
           <div class="col-lg-10 offset-lg-1">
             <div class="shop__wrapper">
               <product-card-component
+                v-for="good in goods"
+                :key="good.id"
+                :img="good.img"
+                :text="good.text"
+                :price="good.price"
                 classItem="shop__item"
-                :img="goods[0].img"
-                :text="goods[0].text"
-                :price="goods[0].price"
-              />
-              <product-card-component
-                classItem="shop__item"
-                :img="goods[1].img"
-                :text="goods[1].text"
-                :price="goods[1].price"
-              />
-              <product-card-component
-                classItem="shop__item"
-                :img="goods[2].img"
-                :text="goods[2].text"
-                :price="goods[2].price"
-              />
-              <product-card-component
-                classItem="shop__item"
-                :img="goods[3].img"
-                :text="goods[3].text"
-                :price="goods[3].price"
-              />
-              <product-card-component
-                classItem="shop__item"
-                :img="goods[4].img"
-                :text="goods[4].text"
-                :price="goods[4].price"
-              />
-              <product-card-component
-                classItem="shop__item"
-                :img="goods[5].img"
-                :text="goods[5].text"
-                :price="goods[5].price"
-              />
+                ><div class="shop__item-country">
+                  {{ good.country }}
+                </div></product-card-component
+              >
             </div>
           </div>
         </div>
@@ -96,6 +71,7 @@
 import NavBarComponent from "@/components/NavBarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
 import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
+import { v4 as uuidv4 } from "uuid";
 
 export default {
   components: { NavBarComponent, ProductCardComponent, HeaderTitleComponent },
@@ -104,39 +80,45 @@ export default {
     return {
       goods: [
         {
-          id: 0,
+          id: uuidv4(),
           img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
+          country: "Brazil",
           price: 10.73,
         },
         {
-          id: 1,
+          id: uuidv4(),
           img: "good-1.jpg",
           text: "Presto Coffee Beans 1kg",
+          country: "Brazil",
           price: 15.99,
         },
         {
-          id: 2,
+          id: uuidv4(),
           img: "good-1.jpg",
           text: "AROMISTICO Coffee 1kg",
+          country: "Brazil",
           price: 6.99,
         },
         {
-          id: 3,
+          id: uuidv4(),
           img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
+          country: "Brazil",
           price: 10.73,
         },
         {
-          id: 4,
+          id: uuidv4(),
           img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
+          country: "Brazil",
           price: 10.73,
         },
         {
-          id: 5,
+          id: uuidv4(),
           img: "good-1.jpg",
           text: "Solimo Coffee Beans 2kg",
+          country: "Brazil",
           price: 10.73,
         },
       ],

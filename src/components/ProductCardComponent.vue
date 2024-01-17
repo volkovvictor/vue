@@ -2,6 +2,7 @@
   <div :class="classItem">
     <img :src="require(`@/assets/img/${img}`)" alt="coffee" />
     <div class="best__item-title">{{ text }}</div>
+    <slot></slot>
     <div class="best__item-price">{{ price }}$</div>
   </div>
 </template>
