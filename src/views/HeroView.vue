@@ -19,7 +19,12 @@
               We makes every day full of energy and taste
             </div>
             <div class="preview__subtitle">Want to try our beans?</div>
-            <a href="./coffeepage.html" class="preview__btn">More</a>
+            <a
+              @click.prevent="scrollTo"
+              href="./coffeepage.html"
+              class="preview__btn"
+              >More</a
+            >
           </div>
         </div>
       </div>
@@ -53,7 +58,7 @@
         </div>
       </div>
     </section>
-    <section class="best">
+    <section class="best" ref="best">
       <div class="container">
         <div class="title">Our best</div>
         <div class="row">
@@ -81,7 +86,9 @@
 import NavBarComponent from "@/components/NavBarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
 import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
+
 import { v4 as uuidv4 } from "uuid";
+import { scrollIntoView } from "seamless-scroll-polyfill";
 
 export default {
   components: { NavBarComponent, ProductCardComponent, HeaderTitleComponent },
@@ -109,6 +116,15 @@ export default {
         },
       ],
     };
+  },
+
+  methods: {
+    scrollTo() {
+      scrollIntoView(this.$refs.best, {
+        behavior: "smooth",
+        block: "top",
+      });
+    },
   },
 };
 </script>
