@@ -65,7 +65,7 @@
           <div class="col-lg-10 offset-lg-1">
             <div class="best__wrapper">
               <product-card-component
-                v-for="best in cards.bestsellers"
+                v-for="best in bestsellers"
                 :key="best.id"
                 :img="best.img"
                 :text="best.text"
@@ -94,7 +94,7 @@ export default {
   components: { NavBarComponent, ProductCardComponent, HeaderTitleComponent },
 
   computed: {
-    cards() {
+    bestsellers() {
       return this.$store.getters["getBestsellersCards"];
     },
   },

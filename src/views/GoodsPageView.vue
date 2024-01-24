@@ -49,7 +49,7 @@
           <div class="col-lg-10 offset-lg-1">
             <div class="shop__wrapper">
               <product-card-component
-                v-for="good in cards.goods"
+                v-for="good in goods"
                 :key="good.id"
                 :img="good.img"
                 :text="good.text"
@@ -77,7 +77,7 @@ export default {
   components: { NavBarComponent, ProductCardComponent, HeaderTitleComponent },
 
   computed: {
-    cards() {
+    goods() {
       return this.$store.getters["getGoodsCards"];
     },
   },

@@ -70,7 +70,7 @@
           <div class="col-lg-10 offset-lg-1">
             <div class="shop__wrapper">
               <product-card-component
-                v-for="coffeeItem in cards.coffee"
+                v-for="coffeeItem in coffee"
                 :key="coffeeItem.id"
                 :img="coffeeItem.img"
                 :text="coffeeItem.text"
@@ -99,7 +99,7 @@ export default {
   components: { NavBarComponent, ProductCardComponent, HeaderTitleComponent },
 
   computed: {
-    cards() {
+    coffee() {
       return this.$store.getters["getCoffeeCards"];
     },
   },
