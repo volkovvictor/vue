@@ -1,13 +1,16 @@
 <template>
   <main>
-    <div class="banner itempage-banner">
+    <div
+      class="banner"
+      :class="pageName === 'coffee' ? 'coffepage-banner' : 'goodspage-banner'"
+    >
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
             <nav-bar-component />
           </div>
         </div>
-        <header-title-component title="Our Coffee" />
+        <header-title-component :title="card.text" />
       </div>
     </div>
 
@@ -17,7 +20,7 @@
           <div class="col-lg-5 offset-1">
             <img
               class="shop__girl"
-              src="@/assets/img/coffee_item.jpg"
+              :src="require(`@/assets/img/${card.img}`)"
               alt="coffee_item"
             />
           </div>
@@ -40,8 +43,10 @@
               nisi ut aliquip ex ea commodo consequat.
             </div>
             <div class="shop__point">
-              <span>Price:</span>
-              <span class="shop__point-price">16.99$</span>
+              <span>Price: </span>
+              <span class="shop__point-price">{{
+                card.price | filterPrice
+              }}</span>
             </div>
           </div>
         </div>
@@ -56,5 +61,18 @@ import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
 
 export default {
   components: { NavBarComponent, HeaderTitleComponent },
+  computed: {
+    pageName() {
+      return this.$route.name;
+    },
+
+    card() {
+      const pageGetter =
+        this.$route.name === "coffee"
+          ? "getCoffeeCardById"
+          : "getGoodsCardById";
+      return this.$store.getters[pageGetter](this.$route.params.id);
+    },
+  },
 };
 </script>

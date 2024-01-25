@@ -16,8 +16,9 @@ const routes = [
    { path: '/ourcoffee', component: OurCoffee },
    { path: '/goodspage', component: GoodsPageView },
    { path: '/contacts', component: ContactsView },
-   { path: '/itempage', component: ItemPageView },
    { path: '/thanks', component: ThanksView },
+   { name: 'coffee', path: '/ourcoffee/:id', component: ItemPageView },
+   { name: 'goods', path: '/goodspage/:id', component: ItemPageView },
 ]
 
 const router = new VueRouter({

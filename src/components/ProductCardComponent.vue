@@ -1,9 +1,9 @@
 <template>
-  <div :class="classItem">
-    <img :src="require(`@/assets/img/${img}`)" alt="coffee" />
-    <div class="best__item-title">{{ text }}</div>
+  <div :class="classItem" @click="onEmmit(card.id)">
+    <img :src="require(`@/assets/img/${card.img}`)" :alt="card.img" />
+    <div class="best__item-title">{{ card.text }}</div>
     <slot></slot>
-    <div class="best__item-price">{{ price }}$</div>
+    <div class="best__item-price">{{ card.price | filterPrice }}</div>
   </div>
 </template>
 
@@ -13,17 +13,15 @@ export default {
     classItem: {
       type: String,
     },
-    img: {
-      type: String,
+    card: {
+      type: Object,
       required: true,
     },
-    text: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
+  },
+
+  methods: {
+    onEmmit(id) {
+      this.$emit("onNavigate", id);
     },
   },
 };

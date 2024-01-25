@@ -49,6 +49,12 @@ const goods = {
       getGoodsCards(state) {
          return state.goods
       },
+
+      getGoodsCardById(state) {
+         return (id) => {
+            return state.goods.find((card) => card.id === +id)
+         }
+      }
    }
 }
 
