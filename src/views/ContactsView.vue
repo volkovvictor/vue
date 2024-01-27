@@ -21,7 +21,7 @@
               alt="Beans logo"
             />
 
-            <form @submit.prevent="submitForm($event)" action="#" class="mt-5">
+            <form @submit.prevent="submitForm" action="#" class="mt-5">
               <div class="form-group row">
                 <div class="col col-12 col-sm-3 d-flex align-items-center">
                   <label for="name-input" class="mb-0">
@@ -31,11 +31,14 @@
                 </div>
                 <div class="col col-12 col-sm-9">
                   <input
-                    v-model="form.name"
+                    v-model="v$.name.$model"
                     type="text"
                     class="form-control"
                     id="name-input"
                   />
+                  <span v-for="error in v$.name.$errors" :key="error.$uid">
+                    {{ error.$message }}
+                  </span>
                 </div>
               </div>
 
@@ -48,11 +51,14 @@
                 </div>
                 <div class="col col-12 col-sm-9">
                   <input
-                    v-model="form.email"
+                    v-model="v$.email.$model"
                     type="email"
                     class="form-control"
                     id="email-input"
                   />
+                  <span v-for="error in v$.email.$errors" :key="error.$uid">
+                    {{ error.$message }}
+                  </span>
                 </div>
               </div>
 
@@ -62,11 +68,14 @@
                 </div>
                 <div class="col col-12 col-sm-9">
                   <input
-                    v-model="form.phone"
+                    v-model="v$.phone.$model"
                     type="tel"
                     class="form-control"
                     id="phone-input"
                   />
+                  <span v-for="error in v$.phone.$errors" :key="error.$uid">
+                    {{ error.$message }}
+                  </span>
                 </div>
               </div>
 
@@ -79,13 +88,29 @@
                 </div>
                 <div class="col col-12">
                   <textarea
-                    v-model="form.message"
+                    v-model="v$.message.$model"
                     class="form-control"
                     name="message"
                     id="message"
                     rows="5"
                     placeholder="Leave your comments here"
                   ></textarea>
+                  <span v-for="error in v$.message.$errors" :key="error.$uid">
+                    {{ error.$message }}
+                  </span>
+                </div>
+                <div>
+                  <div style="display: flex">
+                    <label for="agree">Согласен с договором оферты</label>
+                    <input
+                      id="agree"
+                      type="checkbox"
+                      v-model="v$.agree.$model"
+                    />
+                  </div>
+                  <span v-for="error in v$.agree.$errors" :key="error.$uid">
+                    {{ error.$message }}
+                  </span>
                 </div>
               </div>
 
@@ -106,23 +131,51 @@
 import NavBarComponent from "@/components/NavBarComponent.vue";
 import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
 
+import useVuelidate from "@vuelidate/core";
+import { required, email, maxLength } from "@vuelidate/validators";
+import { helpers } from "@vuelidate/validators";
+
+import { minLength } from "@/validation/minLength.js";
+
 export default {
   components: { NavBarComponent, HeaderTitleComponent },
+  setup() {
+    return { v$: useVuelidate() };
+  },
   data() {
     return {
-      form: {
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-      },
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      agree: "",
     };
   },
-
+  validations() {
+    return {
+      name: { required },
+      email: { required, email },
+      phone: {},
+      message: {
+        required,
+        maxLength: maxLength(20),
+        minLength: helpers.withMessage("this value min 5", minLength),
+      },
+      agree: { required },
+    };
+  },
   methods: {
-    submitForm(event) {
-      console.log(this.form);
-      event.target.reset();
+    async submitForm() {
+      const isFormCorrect = await this.v$.$validate();
+      if (!isFormCorrect) return;
+
+      console.log({
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        message: this.message,
+        agree: this.agree,
+      });
     },
   },
 };

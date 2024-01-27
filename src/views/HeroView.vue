@@ -85,7 +85,6 @@ import NavBarComponent from "@/components/NavBarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
 import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
 
-import { v4 as uuidv4 } from "uuid";
 import { scrollIntoView } from "seamless-scroll-polyfill";
 
 export default {
