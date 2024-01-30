@@ -10,7 +10,7 @@
             <nav-bar-component />
           </div>
         </div>
-        <header-title-component :title="card.text" />
+        <header-title-component :title="product.name" />
       </div>
     </div>
 
@@ -19,8 +19,9 @@
         <div class="row">
           <div class="col-lg-5 offset-1">
             <img
+              style="max-width: 100%"
               class="shop__girl"
-              :src="require(`@/assets/img/${card.img}`)"
+              :src="product.image"
               alt="coffee_item"
             />
           </div>
@@ -33,20 +34,15 @@
             />
             <div class="shop__point">
               <span>Country:</span>
-              Brazil
+              {{ product.country }}
             </div>
             <div class="shop__point">
               <span>Description:</span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              {{ product.description }}
             </div>
             <div class="shop__point">
               <span>Price: </span>
-              <span class="shop__point-price">{{
-                card.price | filterPrice
-              }}</span>
+              <span class="shop__point-price">{{ product.price }}</span>
             </div>
           </div>
         </div>
@@ -61,18 +57,21 @@ import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
 
 export default {
   components: { NavBarComponent, HeaderTitleComponent },
+
   computed: {
     pageName() {
       return this.$route.name;
     },
 
-    card() {
-      const pageGetter =
-        this.$route.name === "coffee"
-          ? "getCoffeeCardById"
-          : "getGoodsCardById";
-      return this.$store.getters[pageGetter](this.$route.params.id);
+    product() {
+      return this.$store.getters["getProduct"];
     },
+  },
+
+  mounted() {
+    fetch(`http://localhost:3000/${this.$route.name}/${this.$route.params.id}`)
+      .then((res) => res.json())
+      .then((data) => this.$store.dispatch("setProductsData", data));
   },
 };
 </script>

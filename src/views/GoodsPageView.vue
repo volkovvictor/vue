@@ -70,7 +70,7 @@
 import NavBarComponent from "@/components/NavBarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
 import HeaderTitleComponent from "@/components/HeaderTitleComponent.vue";
-import {navigator} from "@/mixins/navigator.js"
+import { navigator } from "@/mixins/navigator.js";
 
 export default {
   components: { NavBarComponent, ProductCardComponent, HeaderTitleComponent },
@@ -84,6 +84,12 @@ export default {
       return this.$store.getters["getGoodsCards"];
     },
   },
-  mixins: [navigator]
+  mixins: [navigator],
+
+  mounted() {
+    fetch("http://localhost:3000/goods")
+      .then((res) => res.json())
+      .then((data) => this.$store.dispatch("setGoodsData", data));
+  },
 };
 </script>
